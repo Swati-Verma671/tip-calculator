@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  <title>Frontend Mentor | Tip calculator app</title>
+  <style>
+    body{
+      background-color:hsl(185, 41%, 84%);
+    }
+    .logo{
+      margin:10% 0 5% 50%;
+    }
+    .container-fluid{
+      margin-left:30%;
+      width:50%;
+      background-color: hsl(0, 0%, 100%);
+      border: 5px solid hsl(0, 0%, 100%);
+      border-radius:12px;
+      padding:35px;
+    }
+    p{
+      color:hsl(186, 14%, 43%);
+      font-weight: 700;
+    }
+    .btn{
+      background-color: hsl(183, 100%, 15%);
+      color: hsl(0, 0%, 100%);
+      width:100%;
+      margin-bottom:10px;
+      font-weight: 700;
+    }
+    .second_column{
+      background-color: hsl(183, 100%, 15%);
+      border: 5px solid hsl(183, 100%, 15%);
+      border-radius:12px;
+    }
+    .tip,.total{
+      padding:25px;
+    }
+    #result1,#result2{
+      font-size:48px;
+      font-weight:700;
+    }
+    #reset{
+      /*apparently you need cant give inline css elements to buttons if you*/
+      /*planning on modifying them later.*/
+
+      font-weight: 700;
+      width: 100%;
+      border: 1px solid hsl(172, 67%, 45%);
+      padding:5px;
+      border-radius: 7px;
+      background-color:hsl(172, 67%, 45%);
+      color:hsl(183, 100%, 15%);
+    }
+    input{
+      background-color: hsl(189, 41%, 97%);
+      width:100%;
+      border: 5px solid hsl(189, 41%, 97%);
+      border-radius:5px;
+      text-align:right;
+    }
+    .btn:hover{
+      background-color: hsl(185, 41%, 84%);
+      color:hsl(183, 100%, 15%);
+    }
+    input:focus{
+      outline:none;
+      border:1px solid hsl(172, 67%, 45%);
+      border-radius:5px;
+      color:hsl(183, 100%, 15%);
+      font-weight:700;
+      padding:5px;
+
+    }
+    button#reset:hover{
+      outline:none;
+      background-color:hsl(185, 41%, 84%) ;
+    }
+    button#reset:disabled,#reset[disabled]{
+      background-color:hsl(186, 14%, 43%);
+      border-color:hsl(186, 14%, 43%) ;
+    
+    }
+    .btn:active{
+      background-color:hsl(172, 67%, 45%) ;
+
+    }
+    #amount{
+      background: hsl(189, 41%, 97%) url(images/icon-dollar.svg) left no-repeat;
+    }
+    #people{
+      background: hsl(189, 41%, 97%) url(images/icon-person.svg) left no-repeat;
+    }
+    @media only screen and (max-width:375px){
+      .logo{
+        margin:0;
+        padding:25px 50% 25px 50%;
+      }
+      .container-fluid{
+        margin-left:15%;
+        width:100%;
+        height:100%;
+        padding:20px;
+
+      }
+      #people{
+        margin-bottom:20px;
+      }
+      #reset{
+        margin-bottom:20px;
+      }
+    }
+    
+
+  </style>
+  </head>
+  <body>
+    <img class='logo img-responsive' src='images/logo.svg'>
+    <div class='container-fluid'>
+      <div class='row'>
+        <div class='col-md-6'>
+          <p>Bill</p>
+          <input  type='text' id='amount' />
+          <p>Select Tip %</p>
+          <div class='row'>
+            <div class='col-md-4'><button class='btn btn-default' onclick='calculate(0.5)' value='0.5' >5%</button></div>
+            <div class='col-md-4'><button class='btn btn-default' onclick='calculate(0.10)' value='0.10' >10%</button></div>
+            <div class='col-md-4'><button class='btn btn-default' onclick='calculate(0.15)' value='0.15' >15%</button></div>
+          </div>
+          <div class='row'>
+            <div class='col-md-4'><button class='btn btn-default' onclick='calculate(0.25)' value='0.25'>25%</button></div>
+            <div class='col-md-4'><button class='btn btn-default' onclick='calculate(0.50)' value='0.50'>50%</button></div>
+            <div class='col-md-4'><input id='custom' placeholder='Custom' onchange='calculate(value/100)'/></div>
+          </div>
+          <p>Number of people</p>
+          <input type='number' id='people'/>
+        </div>
+        <div class='col-md-6 second_column'>
+          <div class='row tip'>
+            <div class='col-md-6'><div style='color:white;'>Tip Amount</div><div style='color:hsl(184, 14%, 56%)'>/ person</div></div>
+            <div class='col-md-6'><div id='result1' style='color:hsl(172, 67%, 45%)'>$0.00</div></div>
+          </div> 
+          <div class='row total'>
+            <div class='col-md-6'><div style='color:white'>Total</div><div style='color:hsl(184, 14%, 56%)'>/ person</div></div>
+            <div class='col-md-6'><div id='result2' style='color:hsl(172, 67%, 45%)'>$0.00</div></div>
+          </div>
+          <button id='reset' onclick='reset()'>Reset</button>
+        </div>
+      </div>
+
+
+    </div>
+    <script>  
+      function reset(){
+        //reset everything
+        document.getElementById("amount").value='';
+        document.getElementById("custom").value='';
+        document.getElementById("people").value='';
+        document.getElementById("result1").innerHTML='$0.00';
+        document.getElementById("result2").innerHTML='$0.00';
+
+        //disable button after every use
+        document.getElementById("reset").disabled=true;
+      }
+      function calculate(val){
+        //enable the reset button
+        document.getElementById("reset").disabled=false;
+
+        //collecting data
+        let amount=document.getElementById("amount").value;
+        let num_people=document.getElementById("people").value;
+        let custom_num=document.getElementById("custom").value;
+        
+        //converting string to numbers
+        let amount_num=parseFloat(amount);
+        let Number_people=parseFloat(num_people);
+        let Number_custom=parseFloat(custom_num);
+
+        //collecting elements to show the results
+        let Tip_amount=document.getElementById("result1");
+        let Total=document.getElementById("result2");
+
+        //equating
+        //Use var instead of let here so its not undefined.
+        if(Number_people!==0){
+          var Total_Tip=(amount_num*val)/Number_people;
+          var Final=(amount_num/Number_people)+Total_Tip;
+        }else{
+          var Total_Tip=(amount_num*val);
+          var Final=(amount_num+Total_Tip);
+        }
+        //to.Fixed to round it off to 2 numbers 
+        Tip_amount.innerHTML="$"+(Total_Tip).toFixed(2);
+        Total.innerHTML="$"+(Final).toFixed(2);
+      }
+      
+      
+    </script>
+  </body>
+</html>
