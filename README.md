@@ -38,7 +38,6 @@ Users should be able to:
 - Bootstrap
 - Vanilla js
 
-
 ### Author
 
 - Frontend Mentor - [@Swati-Verma671(https://www.frontendmentor.io/profile/Swati-Verma671)
