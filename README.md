@@ -26,7 +26,7 @@ Users should be able to:
 
 ### Links
 
-- Live Site URL: [https://swati-verma671.github.io/tip-calculator/](https://your-live-site-url.com)
+- Live Site URL: [https://swati-verma671.github.io/tip-calculator/]
 
 
 ### Built with
