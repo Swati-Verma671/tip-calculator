@@ -40,4 +40,4 @@ Users should be able to:
 
 ### Author
 
-- Frontend Mentor - [@Swati-Verma671(https://www.frontendmentor.io/profile/Swati-Verma671)
+- Frontend Mentor - [@Swati-Verma671](https://www.frontendmentor.io/profile/Swati-Verma671)
