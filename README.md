@@ -14,15 +14,8 @@ This is a solution to the [Tip calculator app challenge on Frontend Mentor](http
 
 
 ## Overview
-A tip calculator built by me. Please drop feedback if needed.
+A tip calculator built by me. Please drop feedback. It will be greatly appreciated.
 
-### The challenge
-
-Users should be able to:
-
-- View the optimal layout for the app depending on their device's screen size
-- See hover states for all interactive elements on the page
-- Calculate the correct tip and total cost of the bill per person
 
 ### Links
 
