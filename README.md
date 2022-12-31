@@ -19,7 +19,7 @@ A tip calculator built by me. Please drop feedback. It will be greatly appreciat
 
 ### Links
 
-- Live Site URL: [Here](https://tipcalcy.herokuapp.com/)
+- Live Site URL:
 
 
 ### Built with
